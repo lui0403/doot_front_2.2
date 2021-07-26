@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="chat-area" id="chat-area">
-      <div v-for="data in messages" :key="data" class="unify">
+      <div v-for="data in msg" :key="data" class="unify">
           <div class="mine messages">
             <div class="last message">
             {{ data.text }}
@@ -46,12 +46,18 @@
 </template>
 
 <script >
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
       message: '',
       messages: [],
       keyDowncode: 0
+    }
+  },
+  computed: {
+    msg () {
+      return this.$store.state.messages.list
     }
   },
   methods: {
@@ -72,7 +78,7 @@ export default {
       // document.getElementById("message").value='\n'
       console.log('shift,enter')
     },
-    submit() {
+    submit: function(e) {
       // console.log(message)
       // console.log(time)
       // if (!this.message || this.message.match(/\S/g)){
@@ -81,17 +87,8 @@ export default {
       // }
 
       // this.message = this.message.trim()
-      let time = new Date()
-      if (this.message) {
-        this.messages.push({
-          text: this.message,
-          time: time.toLocaleString(),
-        })
-          console.log(time.toLocaleString())
-      }
 
-      // this.messages.push(msg)
-      this.message = ''
+      this.$store.commit('messages/add', e.target.value)
     },
     scroll() {
       document.getElementById("chat-area").style.top = "100px";
