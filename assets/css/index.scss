@@ -1,0 +1,189 @@
+$icon: 70px;
+
+body{
+    margin: 0;
+}
+
+.container{
+    height: 100vh;
+}
+.side{
+    top: 2px;
+    width: 350px;
+    height: 98vh;
+    border: 1px #ccc solid;
+    float: left;
+    border-radius: 5px;
+    .user{
+        width: 100%;
+        height: 120px;
+        padding: 30px;
+        display: inline-flex;
+        border-radius: 5px;
+        .user-info{
+            height: 100%;
+            width: 100%;
+            .username{
+                height: 35px;
+                display: inline;
+            }
+            .last-message{
+                font-size: 14px;
+                color: gray;
+            }
+        }
+        .icon{
+            flex-basis: $icon;
+            width: $icon;
+            height: $icon;
+            display: inline-block;
+            img {
+                width: $icon;
+                height: $icon;
+            }
+        }
+    }
+    .active{
+        background-color: #cceaf7;
+        border-left: blue 5px solid;
+    }
+}
+.chat-area{
+    height: 90vh;
+    width: calc(100% - 350px);
+    float: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow: scroll;
+    .messages {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            margin-right: 15px;
+            .message {
+                border-radius: 20px;
+                padding: 8px 15px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                display: inline-block;
+            }
+            .time {
+                font-size: 14px;
+                color: gray;
+            }
+    }
+    .other {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: row;
+            margin-left: 15px;
+            .icon {
+                width: 40px;
+                height: 40px;
+            }
+            .user-name {
+                font-size: 14px;
+                color: gray;
+            }
+            .message {
+                margin-right: 25%;
+                background-color: #eee;
+                position: relative;
+            }
+            // .message.last::before {
+            //     content: "";
+            //     position: absolute;
+            //     z-index: 0;
+            //     bottom: 0;
+            //     left: -7px;
+            //     height: 20px;
+            //     width: 20px;
+            //     background: #eee;
+            //     border-bottom-right-radius: 15px;
+            // }
+            // .message.last::after {
+            //     content: "";
+            //     position: absolute;
+            //     z-index: 1;
+            //     bottom: 0;
+            //     left: -10px;
+            //     width: 10px;
+            //     height: 20px;
+            //     background: white;
+            //     border-bottom-right-radius: 10px;
+            // }
+    }
+    .mine {
+            align-items: flex-end;
+            .message {
+                color: white;
+                margin-left: 25%;
+                background-color: #248bf5;
+                background-attachment: fixed;
+                position: relative;
+                right: 0;
+                }
+                .message.last:before {
+                content: "";
+                position: absolute;
+                z-index: 0;
+                bottom: 0;
+                right: -8px;
+                height: 20px;
+                width: 20px;
+                background-color: #248bf5;
+                background-attachment: fixed;
+                border-bottom-left-radius: 15px;
+                }
+                .message.last:after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+                right: -10px;
+                width: 10px;
+                height: 20px;
+                background: white;
+                border-bottom-left-radius: 10px;
+            }
+        }
+}
+.message-area {
+    background-color: rgb(245, 245, 245);
+    height: 10vh;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 350px);
+    .message-area-text{
+        width: 80%;
+        padding-top: 20px;
+        #message{
+            width: 90%;
+            height: 40px;
+            border-radius: 6px;
+        }
+        #message:focus {
+        border: 2px solid hsl(220, 90%, 56%);
+        z-index: 10;
+        outline: 0;
+    }
+    }
+    .message-area-button{
+        width: 20%;
+        padding-top: 20px;
+        #send{
+            background-color: #248bf5;
+            width: 40%;
+            height: 45px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            border: none;
+        }
+    }
+}
