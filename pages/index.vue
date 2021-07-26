@@ -72,7 +72,7 @@ export default {
       }
       e.preventDefault()
       console.log(e.keyCode)
-      this.submit()
+      this.submit(e)
     },
     keyEnterShift(){
       // document.getElementById("message").value='\n'
