@@ -13,7 +13,7 @@
     </div>
     <div class="chat-area" id="chat-area">
       <div v-for="(data, String) in messages" :key="String" class="unify">
-        <!-- <div v-if="data.who = 'me' "> -->
+        <div v-if="data.who = 'me' ">
           <div class="mine messages">
             <div class="last message">
             {{ data.message }}
@@ -22,8 +22,8 @@
               {{ data.time }}
             </div>
           </div>
-        <!-- </div> -->
-        <div v-if="data.who = 'other' ">
+        </div>
+        <div v-else-if="data.who = 'other'">
           <div class="other messages">
             <div>
               <span>経営者A</span>
@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       message: '',
+      who: '',
       keyDowncode: 0
     }
   },
@@ -64,9 +65,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations([
-      'setMessage'
-    ]),
+    // ...mapMutations([
+    //   'setMessage'
+    // ]),
     keyDownEnter(e){
         // console.log(e.keyCode)
       this.keyDownCode = e.keyCode
@@ -94,13 +95,13 @@ export default {
 
       // this.message = this.message.trim()
 
-      this.$store.commit('messages/setMessage', e.target.value)
+      this.$store.commit('messages/setMessage', {message: e.target.value, who: "me"})
       // this.$store.commit('messages/who', 0)
-      // this.bot(e)
+      this.bot(e)
     },
-    // bot(e){
-    //   this.$store.commit('messages/message', e.target.value)
-    // }
+    bot(e){
+      this.$store.commit('messages/setMessage', {message: e.target.value, who: "other"})
+    }
     // r() {
     //   var room = String(document.getElementById('room').value);
     //   this.$store.commit('messages/room', room)
