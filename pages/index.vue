@@ -6,32 +6,36 @@
                 <img src="@/assets/img/a.png" alt="サラリーマン">
             </div>
             <div class="user-info">
-                <p class="username">経営者A</p>
+                <p id="room" class="username">経営者A</p>
                 <p class="last-message" id="last-message">{{}}</p>
             </div>
         </div>
     </div>
     <div class="chat-area" id="chat-area">
-      <div v-for="data in msg" :key="data" class="unify">
+      <div v-for="(data, String) in messages" :key="String" class="unify">
+        <!-- <div v-if="data.who = 'me' "> -->
           <div class="mine messages">
             <div class="last message">
-            {{ data.text }}
+            {{ data.message }}
             </div>
             <div class="time">
               {{ data.time }}
             </div>
           </div>
+        <!-- </div> -->
+        <div v-if="data.who = 'other' ">
           <div class="other messages">
             <div>
               <span>経営者A</span>
             <div class="message">
-            {{ data.text }}
+            {{ data.message }}
             </div>
             <div class="time">
               {{ data.time }}
             </div>
             </div>
           </div>
+        </div>
       </div>
         <div class="message-area">
             <div class="message-area-text">
@@ -51,16 +55,18 @@ export default {
   data() {
     return {
       message: '',
-      messages: [],
       keyDowncode: 0
     }
   },
   computed: {
-    msg () {
+    messages () {
       return this.$store.state.messages.list
     }
   },
   methods: {
+    ...mapMutations([
+      'setMessage'
+    ]),
     keyDownEnter(e){
         // console.log(e.keyCode)
       this.keyDownCode = e.keyCode
@@ -82,17 +88,23 @@ export default {
       // console.log(message)
       // console.log(time)
       // if (!this.message || this.message.match(/\S/g)){
-        //     this.message = ''
+      //       this.message = ''
       //   return
       // }
 
       // this.message = this.message.trim()
 
-      this.$store.commit('messages/add', e.target.value)
+      this.$store.commit('messages/setMessage', e.target.value)
+      // this.$store.commit('messages/who', 0)
+      // this.bot(e)
     },
-    scroll() {
-      document.getElementById("chat-area").style.top = "100px";
-    }
+    // bot(e){
+    //   this.$store.commit('messages/message', e.target.value)
+    // }
+    // r() {
+    //   var room = String(document.getElementById('room').value);
+    //   this.$store.commit('messages/room', room)
+    // }
     }
 }
 
