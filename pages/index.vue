@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="chat-area" id="chat-area">
-      <div v-for="(data, String) in messages" :key="String" class="unify">
-        <div v-if="data.who = 'me' ">
+      <div v-for="(data, index) in messages" :key="index" class="unify">
+        <div v-if="data.who == 'me' ">
           <div class="mine messages">
             <div class="last message">
             {{ data.message }}
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <div v-else-if="data.who = 'other'">
+        <div v-else-if="data.who == 'other'">
           <div class="other messages">
             <div>
               <span>経営者A</span>

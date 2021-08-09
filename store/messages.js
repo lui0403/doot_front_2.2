@@ -22,6 +22,6 @@ export const state = () => {
 let time = new Date().toLocaleDateString();
 export const mutations = {
     setMessage(state, msg) {
-        state.list.push({ message: msg.message, time: time, who: msg.who });
+        state.list.push({ message: msg.message, time: time, who: msg.who});
     }
 }
