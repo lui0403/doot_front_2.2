@@ -4,7 +4,7 @@ export const state = () => {
         {
           message: "a",
           time: "2021/6/13 22:35:59",
-          name: "経営者A",
+          partner: "経営者A",
           who: "other",
           room: 1
         }
@@ -22,6 +22,15 @@ export const state = () => {
 let time = new Date().toLocaleDateString();
 export const mutations = {
     setMessage(state, msg) {
-        state.list.push({ message: msg.message, time: time, who: msg.who});
+        state.list.push({ message: msg.message, time: time, who: msg.who, partner: msg.partner, room: msg.room});
+    }
+}
+
+export const getters = {
+    partner: (state) => {
+        return state.partner
+    },
+    roomId: (state) => {
+        return state.room
     }
 }

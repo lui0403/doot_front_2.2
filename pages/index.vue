@@ -50,10 +50,11 @@
 </template>
 
 <script >
-import { mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
+      // partner: '',
       message: '',
       who: '',
       keyDowncode: 0
@@ -62,7 +63,14 @@ export default {
   computed: {
     messages () {
       return this.$store.state.messages.list
-    }
+    },
+    // partner () {
+    //   return this.$store.state.messages.list
+    // },
+    ...mapGetters({
+      partner: 'messages/partner',
+      room: 'messages/roomId'
+    })
   },
   methods: {
     // ...mapMutations([
@@ -94,8 +102,8 @@ export default {
       // }
 
       // this.message = this.message.trim()
-
-      this.$store.commit('messages/setMessage', {message: e.target.value, who: "me"})
+      console.log(this.partner);
+      this.$store.commit('messages/setMessage', {message: e.target.value, who: "me", partner: this.partner, room: this.room})
       // this.$store.commit('messages/who', 0)
       this.bot(e)
     },
